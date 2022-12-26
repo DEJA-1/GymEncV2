@@ -1,6 +1,6 @@
 package com.example.gymencv2.domain.model
 
-data class ExercisesItem(
+data class Exercise(
     val description: String,
     val image: String,
     val muscle: String,

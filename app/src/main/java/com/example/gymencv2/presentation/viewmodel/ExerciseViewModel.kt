@@ -6,21 +6,20 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymencv2.data.repository.ExerciseRepositoryImpl
-import com.example.gymencv2.domain.model.Exercises
-import com.example.gymencv2.domain.model.ExercisesItem
+import com.example.gymencv2.domain.model.Exercise
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ExerciseViewModel : ViewModel() {
 
-    val repository = ExerciseRepositoryImpl()
+    private val repository = ExerciseRepositoryImpl()
 
-    var exerciseListResponse : List<ExercisesItem> by mutableStateOf(listOf())
+    var exerciseListResponse : List<Exercise> by mutableStateOf(arrayListOf())
     var errorMessage: String by mutableStateOf("")
 
 
-    fun getExercises() {
-        viewModelScope.launch(Dispatchers.IO) {
+    fun getExercises(): List<Exercise>{
+        viewModelScope.launch {
 
             try {
                 val exerciseList = repository.getExercises()
@@ -30,6 +29,7 @@ class ExerciseViewModel : ViewModel() {
             }
 
         }
+        return exerciseListResponse
     }
 
 }
