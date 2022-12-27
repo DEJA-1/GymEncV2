@@ -35,7 +35,7 @@ fun MuscleButton(
     Surface(
         modifier = modifier
             .clickable {
-                onClick(navController)
+                onClick(navController, muscleGroup)
             }
             .padding(8.dp)
             .height(120.dp),
@@ -54,6 +54,6 @@ fun MuscleButton(
 
 }
 
-fun onClick(navController: NavController) {
-    navController.navigate(route = Screen.SampleExercise.route)
+fun onClick(navController: NavController, muscleGroup: String) {
+    navController.navigate(route = Screen.SampleExercise.passMuscleGroup(muscleGroup))
 }

@@ -25,8 +25,8 @@ fun UserExercisesButton(onClick: () -> Unit = {}) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
-            .padding(16.dp)
+            .height(140.dp)
+            .padding(top = 32.dp, bottom = 32.dp, start = 16.dp, end = 16.dp)
             .clickable {
                        onClick()
             },

@@ -2,6 +2,7 @@ package com.example.gymencv2.presentation.home_screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,9 +18,7 @@ import com.example.gymencv2.presentation.home_screen.components.MyTopBar
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
 @Composable
-fun HomeScreen(viewModel: ExerciseViewModel = ExerciseViewModel(), navController: NavController) {
-
-    val exerciseList = viewModel.getExercises()
+fun HomeScreen(navController: NavController) {
 
     Surface(modifier = Modifier.fillMaxSize(),
     color = AppColors.mBackground) {
@@ -27,7 +26,9 @@ fun HomeScreen(viewModel: ExerciseViewModel = ExerciseViewModel(), navController
         Column {
             Header()
 
-            Row(modifier = Modifier.fillMaxWidth().padding(top = 50.dp)){
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 50.dp)){
 
                 MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.body, muscleGroup = "Chest", navController)
                 MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.male, muscleGroup = "Back", navController)

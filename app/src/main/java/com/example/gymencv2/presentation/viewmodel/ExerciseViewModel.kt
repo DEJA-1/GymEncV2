@@ -1,5 +1,6 @@
 package com.example.gymencv2.presentation.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -17,15 +18,14 @@ class ExerciseViewModel : ViewModel() {
     var exerciseListResponse : List<Exercise> by mutableStateOf(arrayListOf())
     var errorMessage: String by mutableStateOf("")
 
-
     fun getExercises(): List<Exercise>{
         viewModelScope.launch {
-
             try {
                 val exerciseList = repository.getExercises()
                 exerciseListResponse = exerciseList
             } catch (e: Exception) {
                 errorMessage = e.message.toString()
+                Log.e("msg", errorMessage)
             }
 
         }
