@@ -20,12 +20,12 @@ import androidx.compose.ui.unit.sp
 import com.example.gymencv2.common.AppColors
 
 @Composable
-fun Header() {
+fun Header(modifier: Modifier = Modifier) {
 
     Surface(modifier = Modifier
         .fillMaxWidth()
         .height(200.dp)
-        .padding(16.dp),
+        .padding(top = 62.dp, bottom = 16.dp, start = 16.dp, end = 16.dp),
         color = AppColors.mBackground,
     ) {
 

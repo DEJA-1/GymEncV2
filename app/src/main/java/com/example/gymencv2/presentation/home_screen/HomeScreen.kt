@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.gymencv2.R
 import com.example.gymencv2.common.AppColors
 import com.example.gymencv2.domain.model.Exercise
@@ -15,9 +16,8 @@ import com.example.gymencv2.presentation.home_screen.components.MuscleButton
 import com.example.gymencv2.presentation.home_screen.components.MyTopBar
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
-@Preview
 @Composable
-fun HomeScreen(viewModel: ExerciseViewModel = ExerciseViewModel()) {
+fun HomeScreen(viewModel: ExerciseViewModel = ExerciseViewModel(), navController: NavController) {
 
     val exerciseList = viewModel.getExercises()
 
@@ -25,22 +25,21 @@ fun HomeScreen(viewModel: ExerciseViewModel = ExerciseViewModel()) {
     color = AppColors.mBackground) {
 
         Column {
-            MyTopBar()
             Header()
 
-            Row(modifier = Modifier.fillMaxWidth()){
+            Row(modifier = Modifier.fillMaxWidth().padding(top = 50.dp)){
 
-                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.body, muscleGroup = "Chest")
-                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.male, muscleGroup = "Back")
-                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.shoulder, muscleGroup = "Shoulders")
+                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.body, muscleGroup = "Chest", navController)
+                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.male, muscleGroup = "Back", navController)
+                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.shoulder, muscleGroup = "Shoulders", navController)
 
             }
 
             Row(modifier = Modifier.fillMaxWidth()){
 
-                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.muscle, muscleGroup = "Biceps")
-                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.triceps, muscleGroup = "Triceps")
-                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.leg, muscleGroup = "Legs")
+                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.muscle, muscleGroup = "Biceps", navController)
+                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.triceps, muscleGroup = "Triceps", navController)
+                MuscleButton(modifier = Modifier.weight(1f), icon = R.drawable.leg, muscleGroup = "Legs", navController)
 
             }
 

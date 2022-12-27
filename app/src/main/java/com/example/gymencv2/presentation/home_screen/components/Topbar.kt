@@ -10,10 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
 
 @Composable
-fun MyTopBar() {
+fun MyTopBar(navController: NavController) {
 
     TopAppBar(modifier = Modifier.fillMaxWidth(),
         backgroundColor = Color.Transparent,
@@ -22,7 +23,7 @@ fun MyTopBar() {
 
         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Arrow Back",
             modifier = Modifier.clickable {
-                //navController.popBackStack(
+                navController.popBackStack()
             })
 
     }
