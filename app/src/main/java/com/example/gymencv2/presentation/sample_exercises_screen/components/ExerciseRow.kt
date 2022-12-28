@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.sample_exercises_screen.Components
+package com.example.gymencv2.presentation.sample_exercises_screen.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
@@ -7,24 +7,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import coil.size.Scale
-import coil.size.Size
 import com.example.gymencv2.common.AppColors
 import com.example.gymencv2.domain.model.Exercise
 
@@ -60,7 +54,6 @@ fun ExerciseRow(exercise: Exercise) {
                 contentDescription = "Exercise image"
             )
 
-
             AnimatedVisibility(visible = isExpanded.value) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Text(
@@ -73,10 +66,9 @@ fun ExerciseRow(exercise: Exercise) {
 
                     Text(
                         text = exercise.description,
-                        fontSize = 18.sp,
+                        fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        fontStyle = FontStyle.Italic,
-                        color = AppColors.mMain
+                        color = Color.Black
                     )
                 }
             }

@@ -3,6 +3,7 @@ package com.example.gymencv2
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -16,11 +17,12 @@ import com.example.gymencv2.navigation.SetupNavGraph
 import com.example.gymencv2.presentation.home_screen.HomeScreen
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 import com.example.gymencv2.ui.theme.GymEncV2Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     lateinit var navController: NavHostController
-    lateinit var viewModel: ExerciseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
 
                 navController = rememberNavController()
-                viewModel = ExerciseViewModel()
+                val viewModel: ExerciseViewModel by viewModels()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),

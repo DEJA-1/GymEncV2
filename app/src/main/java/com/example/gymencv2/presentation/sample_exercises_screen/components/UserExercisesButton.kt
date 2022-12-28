@@ -1,9 +1,8 @@
-package com.example.gymencv2.presentation.sample_exercises_screen.Components
+package com.example.gymencv2.presentation.sample_exercises_screen.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,11 +15,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
+import com.example.gymencv2.navigation.Screen
 
-@Preview
 @Composable
-fun UserExercisesButton(onClick: () -> Unit = {}) {
+fun UserExercisesButton(navController: NavController) {
 
     Surface(
         modifier = Modifier
@@ -28,7 +28,7 @@ fun UserExercisesButton(onClick: () -> Unit = {}) {
             .height(140.dp)
             .padding(top = 32.dp, bottom = 32.dp, start = 16.dp, end = 16.dp)
             .clickable {
-                       onClick()
+                       onClick(navController)
             },
         shape = RoundedCornerShape(16.dp),
         color = AppColors.mDetails,
@@ -52,7 +52,10 @@ fun UserExercisesButton(onClick: () -> Unit = {}) {
             )
         }
 
-
     }
 
+}
+
+fun onClick(navController: NavController) {
+    navController.navigate(route = Screen.UserExercises.route)
 }

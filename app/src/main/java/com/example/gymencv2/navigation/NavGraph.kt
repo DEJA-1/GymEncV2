@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.example.gymencv2.domain.model.Exercise
 import com.example.gymencv2.presentation.home_screen.HomeScreen
 import com.example.gymencv2.presentation.sample_exercises_screen.SampleExerciseScreen
+import com.example.gymencv2.presentation.user_exercises_screen.UserExercisesScreen
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
 @Composable
@@ -35,6 +36,12 @@ fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel
         ) {
             SampleExerciseScreen(navController = navController, viewModel = viewModel, muscleGroup = it.arguments?.getString(
                 SAMPLE_EXERCISE_SCREEN_KEY).toString(), exerciseList = exerciseList)
+        }
+
+        composable(
+            route = Screen.UserExercises.route
+        ) {
+            UserExercisesScreen(navController = navController)
         }
 
     }
