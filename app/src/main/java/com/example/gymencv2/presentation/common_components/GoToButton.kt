@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.sample_exercises_screen.components
+package com.example.gymencv2.presentation.common_components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,15 +12,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
-import com.example.gymencv2.navigation.Screen
 
 @Composable
-fun UserExercisesButton(navController: NavController) {
+fun GoToButton(modifier: Modifier = Modifier, navController: NavController, text: String, route: String) {
 
     Surface(
         modifier = Modifier
@@ -28,7 +26,7 @@ fun UserExercisesButton(navController: NavController) {
             .height(140.dp)
             .padding(top = 32.dp, bottom = 32.dp, start = 16.dp, end = 16.dp)
             .clickable {
-                       onClick(navController)
+                       onClick(navController, route)
             },
         shape = RoundedCornerShape(16.dp),
         color = AppColors.mDetails,
@@ -43,7 +41,7 @@ fun UserExercisesButton(navController: NavController) {
         ) {
 
             Text(
-                text = "YOUR EXERCISES",
+                text = text,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
@@ -56,6 +54,6 @@ fun UserExercisesButton(navController: NavController) {
 
 }
 
-fun onClick(navController: NavController) {
-    navController.navigate(route = Screen.UserExercises.route)
+fun onClick(navController: NavController, route: String) {
+    navController.navigate(route = route)
 }

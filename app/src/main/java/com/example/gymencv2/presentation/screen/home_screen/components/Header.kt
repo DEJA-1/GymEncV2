@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.home_screen.components
+package com.example.gymencv2.presentation.screen.home_screen.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

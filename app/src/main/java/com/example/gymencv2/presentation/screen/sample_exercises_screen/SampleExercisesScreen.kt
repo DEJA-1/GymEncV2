@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.sample_exercises_screen
+package com.example.gymencv2.presentation.screen.sample_exercises_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,9 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
 import com.example.gymencv2.domain.model.Exercise
-import com.example.gymencv2.presentation.home_screen.components.MyTopBar
-import com.example.gymencv2.presentation.sample_exercises_screen.components.ExerciseRow
-import com.example.gymencv2.presentation.sample_exercises_screen.components.UserExercisesButton
+import com.example.gymencv2.navigation.Screen
+import com.example.gymencv2.presentation.common_components.MyTopBar
+import com.example.gymencv2.presentation.screen.sample_exercises_screen.components.ExerciseRow
+import com.example.gymencv2.presentation.common_components.GoToButton
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
 @Composable
@@ -34,8 +35,8 @@ fun SampleExerciseScreen(navController: NavController, muscleGroup: String, view
                 }
                 
             }
-            
-            UserExercisesButton(navController)
+
+            GoToButton(navController = navController, text = "YOUR EXERCISES", route = Screen.UserExercises.route)
         }
 
     }

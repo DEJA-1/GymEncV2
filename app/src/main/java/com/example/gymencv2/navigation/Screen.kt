@@ -13,4 +13,6 @@ sealed class Screen(val route: String) {
 
     object UserExercises: Screen(route = "user_exercises_screen")
 
+    object Add: Screen(route = "add_screen")
+
 }

@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.sample_exercises_screen.components
+package com.example.gymencv2.presentation.screen.sample_exercises_screen.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable

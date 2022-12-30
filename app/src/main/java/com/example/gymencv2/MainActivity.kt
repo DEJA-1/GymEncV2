@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.gymencv2.navigation.SetupNavGraph
-import com.example.gymencv2.presentation.home_screen.HomeScreen
+import com.example.gymencv2.presentation.screen.home_screen.HomeScreen
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 import com.example.gymencv2.ui.theme.GymEncV2Theme
 import dagger.hilt.android.AndroidEntryPoint
