@@ -1,5 +1,6 @@
 package com.example.gymencv2.presentation.user_exercises_screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -15,6 +16,11 @@ fun UserExercisesScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize(),
         color = AppColors.mBackground
     ) {
+
+        Column() {
+
+
+        }
 
         MyTopBar(navController = navController)
     }

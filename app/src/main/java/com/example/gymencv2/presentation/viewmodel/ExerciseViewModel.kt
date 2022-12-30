@@ -1,11 +1,13 @@
 package com.example.gymencv2.presentation.viewmodel
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gymencv2.common.DataOrException
 import com.example.gymencv2.data.repository.ExerciseRepositoryImpl
 import com.example.gymencv2.domain.model.Exercise
 import com.example.gymencv2.domain.repository.ExerciseRepository
@@ -21,24 +23,23 @@ class ExerciseViewModel @Inject constructor(
     private val repository: ExerciseRepository
 ) : ViewModel() {
 
-    private val _exerciseListDb = MutableStateFlow<List<Exercise>>(emptyList())
-    val exerciseListDb = _exerciseListDb.asStateFlow()
+    val data: MutableState<DataOrException<List<Exercise>, Boolean, Exception>> =
+        mutableStateOf(
+            DataOrException(null, true, Exception(""))
+        )
 
-    var exerciseListResponse: List<Exercise> by mutableStateOf(arrayListOf())
-    var errorMessage: String by mutableStateOf("")
+    init {
+        getExercises()
+    }
 
-    fun getExercises(): List<Exercise> {
+    private fun getExercises() {
         viewModelScope.launch {
-            try {
-                val exerciseList = repository.getExercises()
-                exerciseListResponse = exerciseList
-            } catch (e: Exception) {
-                errorMessage = e.message.toString()
-                Log.e("msg", errorMessage)
-            }
+            data.value.loading = true
+            data.value = repository.getExercises()
 
+            if (data.value.data.toString().isNotEmpty())
+                data.value.loading = false
         }
-        return exerciseListResponse
     }
 
 }

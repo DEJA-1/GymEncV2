@@ -18,7 +18,7 @@ import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 @Composable
 fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel) {
 
-    val exerciseList = viewModel.getExercises()
+    val exerciseList = viewModel.data.value.data?.toList()
 
     NavHost(navController = navController, startDestination = Screen.Home.route) {
 

@@ -1,5 +1,7 @@
 package com.example.gymencv2.data.repository
 
+import android.util.Log
+import com.example.gymencv2.common.DataOrException
 import com.example.gymencv2.data.database.ExerciseDao
 import com.example.gymencv2.data.remote.ExerciseApi
 import com.example.gymencv2.domain.model.Exercise
@@ -9,10 +11,27 @@ import javax.inject.Inject
 
 class ExerciseRepositoryImpl @Inject constructor(
     private val api: ExerciseApi,
-    private val dao: ExerciseDao) : ExerciseRepository {
+    private val dao: ExerciseDao
+) : ExerciseRepository {
 
-    override suspend fun getExercises(): List<Exercise> {
-        return api.getExercises()
+    private val dataOrException = DataOrException<List<Exercise>, Boolean, Exception>()
+
+    override suspend fun getExercises(): DataOrException<List<Exercise>, Boolean, java.lang.Exception> {
+        try {
+            dataOrException.loading = true
+            dataOrException.data = api.getExercises()
+
+            if (dataOrException.data.toString().isNotEmpty())
+                dataOrException.loading = false
+
+        } catch (exception: Exception) {
+
+            dataOrException.e = exception
+            Log.d("Exc", "getExercises: ${dataOrException.e!!.localizedMessage}")
+
+        }
+
+        return dataOrException
     }
 
     override fun getAllExercisesFromDb(): Flow<List<Exercise>> {

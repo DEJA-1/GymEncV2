@@ -16,9 +16,9 @@ import com.example.gymencv2.presentation.sample_exercises_screen.components.User
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
 @Composable
-fun SampleExerciseScreen(navController: NavController, muscleGroup: String, viewModel: ExerciseViewModel, exerciseList: List<Exercise>) {
+fun SampleExerciseScreen(navController: NavController, muscleGroup: String, viewModel: ExerciseViewModel, exerciseList: List<Exercise>?) {
 
-    val mExerciseList = exerciseList.filter { it.muscle == muscleGroup }
+    val mExerciseList = exerciseList!!.filter { it.muscle == muscleGroup }
 
     Surface(modifier = Modifier.fillMaxSize(),
     color = AppColors.mBackground) {
