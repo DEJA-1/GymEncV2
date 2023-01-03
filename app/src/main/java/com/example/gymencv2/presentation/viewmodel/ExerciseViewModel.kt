@@ -13,8 +13,10 @@ import com.example.gymencv2.domain.model.Exercise
 import com.example.gymencv2.domain.repository.ExerciseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,8 +30,17 @@ class ExerciseViewModel @Inject constructor(
             DataOrException(null, true, Exception(""))
         )
 
+    private val _exerciseListFromDb = MutableStateFlow<List<Exercise>>(emptyList())
+    val exerciseListFromDb = _exerciseListFromDb.asStateFlow()
+
     init {
         getExercises()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getAllExercisesFromDb().collect() {
+                _exerciseListFromDb.value = it
+            }
+        }
     }
 
     private fun getExercises() {
@@ -45,4 +56,6 @@ class ExerciseViewModel @Inject constructor(
     fun insertExerciseToDb(exercise: Exercise) = viewModelScope.launch {
         repository.insertExerciseToDb(exercise)
     }
+
+
 }

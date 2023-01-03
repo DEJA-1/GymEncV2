@@ -2,6 +2,7 @@ package com.example.gymencv2.navigation
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -21,6 +22,9 @@ fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel
 
     val exerciseList = viewModel.data.value.data?.toList()
 
+
+    val exerciseListFromDb = viewModel.exerciseListFromDb.collectAsState().value
+
     NavHost(navController = navController, startDestination = Screen.Home.route) {
 
         composable(
@@ -35,8 +39,11 @@ fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel
                 type = NavType.StringType
             })
         ) {
-            SampleExerciseScreen(navController = navController, muscleGroup = it.arguments?.getString(
-                MUSCLE_GROUP_KEY).toString(), exerciseList = exerciseList)
+            SampleExerciseScreen(
+                navController = navController,
+                muscleGroup = it.arguments?.getString(MUSCLE_GROUP_KEY).toString(),
+                exerciseList = exerciseList
+            )
         }
 
         composable(
@@ -45,8 +52,11 @@ fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel
                 type = NavType.StringType
             })
         ) {
-            UserExercisesScreen(navController = navController, muscleGroup = it.arguments?.getString(
-                MUSCLE_GROUP_KEY).toString()
+            UserExercisesScreen(
+                navController = navController,
+                muscleGroup = it.arguments?.getString(MUSCLE_GROUP_KEY).toString(),
+                viewModel = viewModel,
+                exerciseListFromDb = exerciseListFromDb
             )
         }
 
@@ -56,8 +66,8 @@ fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel
                 type = NavType.StringType
             })
         ) {
-            AddScreen(navController = navController, muscleGroup = it.arguments?.getString(
-                MUSCLE_GROUP_KEY).toString(),
+            AddScreen(
+                navController = navController, muscleGroup = it.arguments?.getString(MUSCLE_GROUP_KEY).toString(),
                 viewModel = viewModel
             )
         }

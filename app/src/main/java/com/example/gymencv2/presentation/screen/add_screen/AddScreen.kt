@@ -108,11 +108,13 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
             SaveButton(modifier = Modifier.padding(start = 26.dp, end = 26.dp)) {
 
                 if (!inputCheck(name, description, selectedImageUri)) {
-                    addUser(muscleGroup, name, description, selectedImageUri, viewModel)
+
+                    addUser(muscleGroup, name, description, selectedImageUri, viewModel, navController)
                     name = ""
                     description = ""
                     selectedImageUri = ""
-                    navController.navigate(route = Screen.UserExercises.route)
+                    navController.navigate(route = Screen.UserExercises.passMuscleGroup(muscleGroup))
+
                 } else {
                     Toast.makeText(context, "Fill out the data!", Toast.LENGTH_SHORT).show()
                 }
@@ -122,7 +124,7 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
     }
 }
 
-fun addUser(muscleGroup: String, name: String, description: String, selectedImage: String, viewModel: ExerciseViewModel) {
+fun addUser(muscleGroup: String, name: String, description: String, selectedImage: String, viewModel: ExerciseViewModel, navController: NavController) {
 
     val exercise: Exercise = Exercise(muscle = muscleGroup, name = name, description = description, image = selectedImage)
 

@@ -6,7 +6,10 @@ import com.example.gymencv2.data.database.ExerciseDao
 import com.example.gymencv2.data.remote.ExerciseApi
 import com.example.gymencv2.domain.model.Exercise
 import com.example.gymencv2.domain.repository.ExerciseRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class ExerciseRepositoryImpl @Inject constructor(
@@ -34,9 +37,8 @@ class ExerciseRepositoryImpl @Inject constructor(
         return dataOrException
     }
 
-    override fun getAllExercisesFromDb(): Flow<List<Exercise>> {
-        return dao.getAllExercisesFromDb()
-    }
+    override fun getAllExercisesFromDb(): Flow<List<Exercise>> =
+         dao.getAllExercisesFromDb().flowOn(Dispatchers.IO).conflate()
 
     override suspend fun getExerciseByIdFromDb(id: Int): Exercise? {
         return dao.getExerciseByIdFromDb(id = id)

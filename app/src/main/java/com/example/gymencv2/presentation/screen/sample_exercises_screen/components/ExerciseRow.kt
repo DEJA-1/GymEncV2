@@ -57,7 +57,7 @@ fun ExerciseRow(exercise: Exercise) {
             AnimatedVisibility(visible = isExpanded.value) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Text(
-                        text = exercise.name,
+                        text = exercise.name.uppercase(),
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
                         fontStyle = FontStyle.Italic,
@@ -65,7 +65,7 @@ fun ExerciseRow(exercise: Exercise) {
                     )
 
                     Text(
-                        text = exercise.description,
+                        text = exercise.description.uppercase(),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
