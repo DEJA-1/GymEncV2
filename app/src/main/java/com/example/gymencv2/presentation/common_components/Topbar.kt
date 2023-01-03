@@ -14,9 +14,9 @@ import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
 
 @Composable
-fun MyTopBar(navController: NavController) {
+fun MyTopBar(navController: NavController, modifier: Modifier = Modifier) {
 
-    TopAppBar(modifier = Modifier.fillMaxWidth(),
+    TopAppBar(modifier = modifier,
         backgroundColor = Color.Transparent,
         contentColor = AppColors.mDetails,
         elevation = 0.dp) {

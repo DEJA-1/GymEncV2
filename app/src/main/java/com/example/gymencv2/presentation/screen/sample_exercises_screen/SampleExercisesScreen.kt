@@ -17,7 +17,7 @@ import com.example.gymencv2.presentation.common_components.GoToButton
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
 @Composable
-fun SampleExerciseScreen(navController: NavController, muscleGroup: String, viewModel: ExerciseViewModel, exerciseList: List<Exercise>?) {
+fun SampleExerciseScreen(navController: NavController, muscleGroup: String, exerciseList: List<Exercise>?) {
 
     val mExerciseList = exerciseList!!.filter { it.muscle == muscleGroup }
 
@@ -36,7 +36,7 @@ fun SampleExerciseScreen(navController: NavController, muscleGroup: String, view
                 
             }
 
-            GoToButton(navController = navController, text = "YOUR EXERCISES", route = Screen.UserExercises.route)
+            GoToButton(navController = navController, text = "YOUR EXERCISES", route = Screen.UserExercises.passMuscleGroup(muscleGroup))
         }
 
     }

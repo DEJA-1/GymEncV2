@@ -15,7 +15,7 @@ import com.example.gymencv2.presentation.common_components.GoToButton
 import com.example.gymencv2.presentation.common_components.MyTopBar
 
 @Composable
-fun UserExercisesScreen(navController: NavController) {
+fun UserExercisesScreen(navController: NavController, muscleGroup: String) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -28,8 +28,7 @@ fun UserExercisesScreen(navController: NavController) {
                 MyTopBar(navController = navController)
             }
 
-            GoToButton(navController = navController, text = "ADD EXERCISE", route = Screen.Add.route)
-
+            GoToButton(navController = navController, text = "ADD EXERCISE", route = Screen.Add.passMuscleGroup(muscleGroup))
 
         }
     }

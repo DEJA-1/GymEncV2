@@ -31,24 +31,35 @@ fun SetupNavGraph(navController: NavHostController, viewModel: ExerciseViewModel
 
         composable(
             route = Screen.SampleExercise.route,
-            arguments = listOf(navArgument(SAMPLE_EXERCISE_SCREEN_KEY) {
+            arguments = listOf(navArgument(MUSCLE_GROUP_KEY) {
                 type = NavType.StringType
             })
         ) {
-            SampleExerciseScreen(navController = navController, viewModel = viewModel, muscleGroup = it.arguments?.getString(
-                SAMPLE_EXERCISE_SCREEN_KEY).toString(), exerciseList = exerciseList)
+            SampleExerciseScreen(navController = navController, muscleGroup = it.arguments?.getString(
+                MUSCLE_GROUP_KEY).toString(), exerciseList = exerciseList)
         }
 
         composable(
-            route = Screen.UserExercises.route
+            route = Screen.UserExercises.route,
+            arguments = listOf(navArgument(MUSCLE_GROUP_KEY) {
+                type = NavType.StringType
+            })
         ) {
-            UserExercisesScreen(navController = navController)
+            UserExercisesScreen(navController = navController, muscleGroup = it.arguments?.getString(
+                MUSCLE_GROUP_KEY).toString()
+            )
         }
 
         composable(
-            route = Screen.Add.route
+            route = Screen.Add.route,
+            arguments = listOf(navArgument(MUSCLE_GROUP_KEY) {
+                type = NavType.StringType
+            })
         ) {
-            AddScreen(navController = navController)
+            AddScreen(navController = navController, muscleGroup = it.arguments?.getString(
+                MUSCLE_GROUP_KEY).toString(),
+                viewModel = viewModel
+            )
         }
 
     }

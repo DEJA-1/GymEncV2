@@ -42,4 +42,7 @@ class ExerciseViewModel @Inject constructor(
         }
     }
 
+    fun insertExerciseToDb(exercise: Exercise) = viewModelScope.launch {
+        repository.insertExerciseToDb(exercise)
+    }
 }
