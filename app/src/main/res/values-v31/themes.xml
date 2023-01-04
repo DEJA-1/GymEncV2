@@ -3,5 +3,6 @@
 
     <style name="Theme.GymEncV2" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/status_bar_color</item>
+        <item name="android:windowSplashScreenBackground">@color/bg</item>
     </style>
 </resources>

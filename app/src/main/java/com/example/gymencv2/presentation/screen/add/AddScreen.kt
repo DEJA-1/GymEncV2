@@ -53,7 +53,7 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(top = 6.dp, bottom = 6.dp)
+            modifier = Modifier.padding(bottom = 6.dp)
         ) {
 
             MyTopBar(
@@ -63,14 +63,14 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
                     .padding(bottom = 64.dp)
             )
 
-            InputTextField(
+            InputTextField(modifier = Modifier.padding(top = 6.dp),
                 text = muscleGroup.uppercase(),
                 label = "MUSCLE GROUP",
                 enabled = false,
                 fontStyle = FontStyle.Italic
             )
 
-            InputTextField(
+            InputTextField(modifier = Modifier.padding(top = 6.dp),
                 text = name.uppercase(),
                 label = "NAME",
                 fontSize = 18.sp,
@@ -83,7 +83,7 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
                         name = it
                 })
 
-            InputTextField(
+            InputTextField(modifier = Modifier.padding(top = 6.dp),
                 text = description.uppercase(),
                 label = "DESCRIPTION",
                 maxLines = 5,

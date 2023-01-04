@@ -60,8 +60,6 @@ fun UserExercisesScreen(navController: NavController, muscleGroup: String, viewM
 
                 }
             }
-
-
             GoToButton(
                 navController = navController,
                 text = "ADD EXERCISE",

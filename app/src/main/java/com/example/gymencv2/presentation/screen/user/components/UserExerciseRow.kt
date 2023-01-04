@@ -1,5 +1,6 @@
 package com.example.gymencv2.presentation.screen.user.components
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -35,6 +36,8 @@ fun UserExerciseRow(exercise: Exercise, viewModel: ExerciseViewModel) {
         mutableStateOf(false)
     }
 
+    val context = LocalContext.current
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,7 +68,8 @@ fun UserExerciseRow(exercise: Exercise, viewModel: ExerciseViewModel) {
             AnimatedVisibility(visible = isExpanded.value) {
 
                 Column() {
-                    Text(modifier = Modifier.padding(12.dp),
+                    Text(
+                        modifier = Modifier.padding(12.dp),
                         text = exercise.name.uppercase(),
                         fontSize = 28.sp,
                         fontWeight = FontWeight.ExtraBold,
@@ -73,7 +77,8 @@ fun UserExerciseRow(exercise: Exercise, viewModel: ExerciseViewModel) {
                         color = Color.White
                     )
 
-                    Text(modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp),
+                    Text(
+                        modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp),
                         text = exercise.description.uppercase(),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
@@ -84,13 +89,21 @@ fun UserExerciseRow(exercise: Exercise, viewModel: ExerciseViewModel) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp)
-                            .clickable { onClickDelete(exercise, viewModel) },
+                            .clickable {
+                                onClickDelete(exercise, viewModel)
+                                Toast.makeText(context, "Exercise deleted", Toast.LENGTH_SHORT).show()
+                            },
                         color = AppColors.mRed
                     ) {
-                        Box(modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
 
-                            Icon(imageVector = Icons.Rounded.Delete, contentDescription = "Delete Button")
+                            Icon(
+                                imageVector = Icons.Rounded.Delete,
+                                contentDescription = "Delete Button"
+                            )
 
                         }
                     }
