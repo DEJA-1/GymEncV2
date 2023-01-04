@@ -12,14 +12,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
+import com.example.gymencv2.navigation.Screen
 
 @Composable
 fun MyTopBar(navController: NavController, modifier: Modifier = Modifier) {
 
     TopAppBar(modifier = modifier,
-        backgroundColor = Color.Transparent,
-        contentColor = AppColors.mDetails,
-        elevation = 0.dp) {
+        backgroundColor = AppColors.mDetails,
+        contentColor = Color.White,
+        elevation = 4.dp) {
 
         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Arrow Back",
             modifier = Modifier.clickable {

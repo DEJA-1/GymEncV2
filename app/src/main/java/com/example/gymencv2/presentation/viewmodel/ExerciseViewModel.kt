@@ -57,5 +57,8 @@ class ExerciseViewModel @Inject constructor(
         repository.insertExerciseToDb(exercise)
     }
 
+    fun deleteExerciseFromDb(exercise: Exercise) = viewModelScope.launch {
+        repository.deleteExerciseFromDb(exercise)
+    }
 
 }

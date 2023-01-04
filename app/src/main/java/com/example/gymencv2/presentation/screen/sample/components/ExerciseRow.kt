@@ -1,10 +1,11 @@
-package com.example.gymencv2.presentation.screen.sample_exercises_screen.components
+package com.example.gymencv2.presentation.screen.sample.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -41,30 +42,35 @@ fun ExerciseRow(exercise: Exercise) {
         backgroundColor = AppColors.mDetails
     ) {
 
-
         Column() {
 
-            AsyncImage(
-                modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(exercise.image)
-                    .crossfade(true)
-                    .build(),
-                contentScale = ContentScale.FillBounds,
-                contentDescription = "Exercise image"
-            )
+            Row() {
+                AsyncImage(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(exercise.image)
+                        .crossfade(true)
+                        .build(),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = "Exercise image"
+                )
+            }
 
             AnimatedVisibility(visible = isExpanded.value) {
-                Column(modifier = Modifier.padding(12.dp)) {
+
+                Column() {
                     Text(
+                        modifier = Modifier.padding(12.dp),
                         text = exercise.name.uppercase(),
                         fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.ExtraBold,
                         fontStyle = FontStyle.Italic,
                         color = Color.White
                     )
 
                     Text(
+                        modifier = Modifier.padding(start = 12.dp, end = 12.dp, bottom = 12.dp),
                         text = exercise.description.uppercase(),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,

@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.screen.home_screen.components
+package com.example.gymencv2.presentation.screen.home.components
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed

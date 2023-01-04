@@ -6,5 +6,5 @@ object AppColors {
     val mBackground = Color(0xFF2e2e2e)
     val mMain = Color(0xFF4f4f4f)
     val mDetails = Color(0xFFf98e68)
-
+    val mRed = Color(0xFFBB0A21)
 }

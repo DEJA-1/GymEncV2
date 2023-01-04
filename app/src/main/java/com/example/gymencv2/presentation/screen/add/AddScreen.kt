@@ -1,6 +1,5 @@
-package com.example.gymencv2.presentation.screen.add_screen
+package com.example.gymencv2.presentation.screen.add
 
-import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -15,15 +14,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import com.example.gymencv2.common.AppColors
 import com.example.gymencv2.domain.model.Exercise
 import com.example.gymencv2.navigation.Screen
 import com.example.gymencv2.presentation.common_components.MyTopBar
-import com.example.gymencv2.presentation.screen.add_screen.components.InputTextField
-import com.example.gymencv2.presentation.screen.add_screen.components.PickPhotoButton
-import com.example.gymencv2.presentation.screen.add_screen.components.SaveButton
+import com.example.gymencv2.presentation.screen.add.components.InputTextField
+import com.example.gymencv2.presentation.screen.add.components.PickPhotoButton
+import com.example.gymencv2.presentation.screen.add.components.SaveButton
 import com.example.gymencv2.presentation.viewmodel.ExerciseViewModel
 
 @Composable
@@ -43,7 +41,7 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
 
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri -> selectedImageUri = uri.toString()}
+        onResult = { uri -> selectedImageUri = uri.toString() }
     )
 
     val context = LocalContext.current
@@ -55,7 +53,7 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(6.dp)
+            modifier = Modifier.padding(top = 6.dp, bottom = 6.dp)
         ) {
 
             MyTopBar(
@@ -91,10 +89,7 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
                 maxLines = 5,
                 fontSize = 16.sp,
                 onTextChanged = {
-                    if (it.all { char ->
-                            char.isLetter() || char.isWhitespace()
-                        })
-                        description = it
+                    description = it
                 }
             )
 
@@ -108,8 +103,14 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
             SaveButton(modifier = Modifier.padding(start = 26.dp, end = 26.dp)) {
 
                 if (!inputCheck(name, description, selectedImageUri)) {
-
-                    addUser(muscleGroup, name, description, selectedImageUri, viewModel, navController)
+                    addUser(
+                        muscleGroup,
+                        name,
+                        description,
+                        selectedImageUri,
+                        viewModel,
+                        navController
+                    )
                     name = ""
                     description = ""
                     selectedImageUri = ""
@@ -124,14 +125,26 @@ fun AddScreen(navController: NavController, muscleGroup: String, viewModel: Exer
     }
 }
 
-fun addUser(muscleGroup: String, name: String, description: String, selectedImage: String, viewModel: ExerciseViewModel, navController: NavController) {
+fun addUser(
+    muscleGroup: String,
+    name: String,
+    description: String,
+    selectedImage: String,
+    viewModel: ExerciseViewModel,
+    navController: NavController
+) {
 
-    val exercise: Exercise = Exercise(muscle = muscleGroup, name = name, description = description, image = selectedImage)
+    val exercise: Exercise = Exercise(
+        muscle = muscleGroup,
+        name = name,
+        description = description,
+        image = selectedImage
+    )
 
     viewModel.insertExerciseToDb(exercise)
 }
 
-fun inputCheck(name: String, description: String, selectedImage: String) : Boolean {
+fun inputCheck(name: String, description: String, selectedImage: String): Boolean {
     if (name.isEmpty() || description.isEmpty() || selectedImage.isEmpty())
         return true
 

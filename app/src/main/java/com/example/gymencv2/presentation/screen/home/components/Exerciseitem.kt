@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.screen.home_screen.components
+package com.example.gymencv2.presentation.screen.home.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape

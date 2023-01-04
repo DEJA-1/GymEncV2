@@ -1,4 +1,4 @@
-package com.example.gymencv2.presentation.screen.home_screen
+package com.example.gymencv2.presentation.screen.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
@@ -8,8 +8,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.gymencv2.R
 import com.example.gymencv2.common.AppColors
-import com.example.gymencv2.presentation.screen.home_screen.components.Header
-import com.example.gymencv2.presentation.screen.home_screen.components.MuscleButton
+import com.example.gymencv2.presentation.screen.home.components.Header
+import com.example.gymencv2.presentation.screen.home.components.MuscleButton
 
 @Composable
 fun HomeScreen(navController: NavController) {
