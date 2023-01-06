@@ -10,6 +10,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.gymencv2.navigation.SetupNavGraph
@@ -29,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
 
                 navController = rememberNavController()
-                val viewModel: ExerciseViewModel by viewModels()
+                val viewModel = hiltViewModel<ExerciseViewModel>()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
